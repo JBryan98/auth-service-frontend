@@ -1,0 +1,19 @@
+<app-filter-drawer
+  (filter)="onSubmit()"
+  (clear)="onClear()"
+  title="Filtrar Usuarios"
+  [disableFilterButton]="!hasFilters()"
+  [disableClearButton]="disableClearButton()"
+  [(opened)]="opened"
+>
+  <form [formRoot]="form">
+    <app-form-select-multiple
+      [formField]="form.roleIds"
+      label="Roles"
+      [options]="roles()"
+      valueKey="id"
+      labelKey="name"
+    />
+    <app-form-select-boolean [formField]="form.enabled" label="Habilitados" emptyLabel="Todos" />
+  </form>
+</app-filter-drawer>

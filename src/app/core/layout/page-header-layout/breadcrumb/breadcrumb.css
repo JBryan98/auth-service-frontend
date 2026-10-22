@@ -1,0 +1,62 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.9rem;
+}
+
+.breadcrumb mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  color: var(--mat-sys-primary);
+}
+
+.breadcrumb .crumb-link {
+  color: var(--mat-sys-primary);
+}
+
+.breadcrumb .crumb-error {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.breadcrumb .crumb-error,
+.breadcrumb .crumb-error mat-icon {
+  color: var(--mat-sys-error);
+}
+
+.breadcrumb .skeleton {
+  display: inline-block;
+  width: 100px;
+  height: 1rem;
+  border-radius: 4px;
+
+  background: linear-gradient(
+    90deg,
+    var(--mat-sys-surface-container) 25%,
+    var(--mat-sys-surface-container-high) 50%,
+    var(--mat-sys-surface-container) 75%
+  );
+
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: -100% 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .breadcrumbs a,
+  .breadcrumbs .current {
+    font-size: 0.8rem;
+  }
+}

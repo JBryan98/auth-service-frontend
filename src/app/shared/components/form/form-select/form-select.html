@@ -1,0 +1,39 @@
+@if (!hidden()) {
+  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    @if (label()) {
+      <mat-label>{{ label() }}</mat-label>
+    }
+
+    @if (prefixIcon()) {
+      <mat-icon matPrefix>{{ prefixIcon() }}</mat-icon>
+    }
+
+    <mat-select
+      #select
+      appSyncErrorState
+      [value]="value()"
+      [placeholder]="placeholder()"
+      [required]="required()"
+      [disabled]="disabled() || readonly()"
+      [compareWith]="compareWith()"
+      [errorStateMatcher]="errorMatcher"
+      (selectionChange)="onSelectionChange($event.value)"
+      (openedChange)="onOpenedChange($event)"
+      (blur)="onBlur(select)"
+    >
+      @for (option of options(); track option[valueKey()]) {
+        <mat-option [value]="option[valueKey()]">
+          {{ option[labelKey()] }}
+        </mat-option>
+      }
+    </mat-select>
+
+    @if (hint()) {
+      <mat-hint>{{ hint() }}</mat-hint>
+    }
+
+    @for (error of visibleErrors(); track error) {
+      <mat-error>{{ error.message }}</mat-error>
+    }
+  </mat-form-field>
+}

@@ -1,0 +1,45 @@
+<mat-drawer-container class="filter-drawer-container" [hasBackdrop]="true">
+  <mat-drawer
+    position="end"
+    mode="over"
+    [disableClose]="true"
+    [opened]="opened()"
+    [style.width]="width()"
+  >
+    <div class="filter-drawer">
+      <header class="filter-drawer__header">
+        <h2>{{ title() }}</h2>
+        <button mat-icon-button type="button" aria-label="Cerrar filtros" (click)="onClose()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </header>
+
+      <main class="filter-drawer__content">
+        <ng-content />
+      </main>
+
+      <footer class="filter-drawer__footer">
+        <button
+          matButton="filled"
+          type="button"
+          class="btn-secondary"
+          [disabled]="disableFilterButton()"
+          (click)="onFilter()"
+        >
+          <mat-icon>filter_list</mat-icon>
+          Filtrar
+        </button>
+        <button
+          matButton="filled"
+          type="button"
+          class="btn-error"
+          [disabled]="disableClearButton()"
+          (click)="onClear()"
+        >
+          <mat-icon>filter_list_off</mat-icon>
+          Limpiar
+        </button>
+      </footer>
+    </div>
+  </mat-drawer>
+</mat-drawer-container>

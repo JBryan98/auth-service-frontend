@@ -1,0 +1,50 @@
+@if (!hidden()) {
+  <mat-form-field appearance="outline" subscriptSizing="dynamic">
+    @if (label()) {
+      <mat-label>{{ label() }}</mat-label>
+    }
+
+    @if (prefixIcon()) {
+      <mat-icon matPrefix>{{ prefixIcon() }}</mat-icon>
+    }
+
+    <input
+      matInput
+      appSyncErrorState
+      [type]="inputType()"
+      [value]="value()"
+      [placeholder]="placeholder()"
+      [required]="required()"
+      [disabled]="disabled()"
+      [readonly]="readonly()"
+      [errorStateMatcher]="errorMatcher"
+      [attr.name]="name() || null"
+      [attr.maxlength]="maxLength() ?? null"
+      [attr.autocomplete]="autocomplete()"
+      (input)="onInput($event)"
+      (blur)="touch.emit()"
+    />
+
+    @if (type() === 'password') {
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        [disabled]="disabled()"
+        [attr.aria-label]="hidePassword() ? 'Mostrar contraseña' : 'Ocultar contraseña'"
+        [attr.aria-pressed]="!hidePassword()"
+        (click)="togglePasswordVisibility()"
+      >
+        <mat-icon>{{ hidePassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+    }
+
+    @if (hint()) {
+      <mat-hint>{{ hint() }}</mat-hint>
+    }
+
+    @for (error of visibleErrors(); track error) {
+      <mat-error>{{ error.message }}</mat-error>
+    }
+  </mat-form-field>
+}

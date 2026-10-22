@@ -1,0 +1,33 @@
+<h2 mat-dialog-title>
+  {{ data.title ?? 'Eliminar' }}
+</h2>
+<button matIconButton type="button" class="close-button" (click)="cancel()">
+  <mat-icon>close</mat-icon>
+</button>
+@if (data.message) {
+  <mat-divider></mat-divider>
+  <mat-dialog-content>
+    <app-alert [severity]="data.messageSeverity ?? 'info'">
+      {{ data.message }}
+    </app-alert>
+  </mat-dialog-content>
+}
+<mat-dialog-actions align="end">
+  <button
+    type="button"
+    matButton="filled"
+    class="btn-error"
+    [disabled]="isLoading()"
+    (click)="cancel()"
+  >
+    {{ data.cancelButtonText ?? 'Cancelar' }}
+  </button>
+
+  <button type="button" matButton="filled" [disabled]="isLoading()" (click)="confirm()">
+    @if (isLoading()) {
+      Eliminando...
+    } @else {
+      {{ data.confirmButtonText ?? 'Aceptar' }}
+    }
+  </button>
+</mat-dialog-actions>

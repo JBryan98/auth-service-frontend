@@ -1,0 +1,82 @@
+<ng-template #enabledCell let-user>
+  <span>{{ user.enabled | boolean }}</span>
+</ng-template>
+<ng-template #rolesCell let-user>
+  @for (role of user.roles; track role.id) {
+    <mat-chip>{{ role.name }}</mat-chip>
+  }
+</ng-template>
+<ng-template #actionsCell let-user>
+  <button mat-icon-button [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="['/users', user.id]">
+      <mat-icon>user_attributes</mat-icon>
+      Ver detalles
+    </button>
+    <button mat-menu-item (click)="editUser(user.id)">
+      <mat-icon>edit</mat-icon>
+      Editar
+    </button>
+    <button mat-menu-item (click)="restorePassword(user)">
+      <mat-icon>passkey</mat-icon>
+      Restablecer contraseña
+    </button>
+    @if (user.enabled) {
+      <button mat-menu-item (click)="disableUser(user)">
+        <mat-icon>person_off</mat-icon>
+        Deshabilitar
+      </button>
+    } @else {
+      <button mat-menu-item (click)="enableUser(user)">
+        <mat-icon>verified_user</mat-icon>
+        Habilitar
+      </button>
+    }
+  </mat-menu>
+</ng-template>
+<app-datatable
+  [data]="usersData.hasValue() ? usersData.value().content : []"
+  [columns]="columns"
+  [isLoading]="isLoadingUsers()"
+  [isRefetching]="isRefetchingUsers()"
+  [error]="usersData.error()"
+  (reloadData)="reloadUsers()"
+  [totalItems]="usersData.hasValue() ? usersData.value().page.totalElements : 0"
+  [pageIndex]="userFilter().pageIndex"
+  [pageSize]="userFilter().pageSize"
+  [sort]="userFilter().sort"
+  [searchFilter]="userFilter().search"
+  [cellTemplates]="{ roles: rolesCell, enabled: enabledCell, actions: actionsCell }"
+>
+  <div datatable-toolbar class="toolbar-actions">
+    <button matButton="filled" (click)="createUser()">
+      <mat-icon>add</mat-icon>
+      Crear usuario
+    </button>
+    <button
+      matButton="filled"
+      (click)="openFilterDrawer()"
+      class="btn-secondary"
+      [disabled]="rolesResource.isLoading()"
+    >
+      <mat-icon>filter_list</mat-icon>
+      @if (rolesResource.isLoading()) {
+        Cargando...
+      } @else {
+        Filtrar
+      }
+    </button>
+    @if (canClearFilters()) {
+      <button matButton="filled" (click)="cleanFilters()" class="btn-error">
+        <mat-icon>filter_list_off</mat-icon>
+        Limpiar
+      </button>
+    }
+  </div>
+</app-datatable>
+<app-user-filter-form
+  [(opened)]="openFilters"
+  [roles]="rolesResource.hasValue() ? rolesResource.value().content : []"
+/>

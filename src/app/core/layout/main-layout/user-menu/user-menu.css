@@ -1,0 +1,8 @@
+.avatar-button {
+  background-color: gray !important;
+  color: white !important;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

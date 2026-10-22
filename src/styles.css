@@ -1,0 +1,120 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1 { font: var(--mat-sys-headline-large); }
+h2 { font: var(--mat-sys-headline-medium); }
+h3 { font: var(--mat-sys-headline-small); }
+h4 { font: var(--mat-sys-title-large); }
+h5 { font: var(--mat-sys-title-medium); }
+h6 { font: var(--mat-sys-title-small); }
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+:root {
+  --app-warning: #ed6c02;
+  --app-warning-light: #ff9800;
+  --app-info: #0288d1;
+  --app-info-light: #03a9f4;
+  --app-success: #2e7d32;
+  --app-success-light: #4caf50;
+  --app-error: #d32f2f;
+  --app-error-light: #ef5350;
+  --app-secondary: #9c27b0;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.paper {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.form-flex {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.btn-error {
+  background-color: var(--mat-sys-error) !important;
+  color: #fff;
+}
+
+.btn-secondary {
+  background-color: var(--app-secondary) !important;
+  color: #fff;
+}
+
+.btn-success {
+  background-color: var(--app-success) !important;
+  color: #fff;
+}
+
+.btn-warning {
+  background-color: var(--app-warning);
+  color: #fff;
+}
+
+.btn-info {
+  background-color: var(--app-info);
+  color: #fff;
+}
+
+/* 1. Limpiamos el contenedor por defecto de Material */
+.mat-mdc-snack-bar-container {
+  --mdc-snackbar-container-color: transparent !important;
+  --mat-snackbar-container-shape: 8px !important;
+  box-shadow: none !important;
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background-color: transparent !important;
+  padding: 0 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  border-radius: 8px !important;
+}
+
+/* Sobrescribir el padding interno del label de Material */
+.mat-mdc-snack-bar-container .mdc-snackbar__label {
+  padding: 4px 8px 4px 8px !important;
+  flex-grow: 1;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+/* 2. Asignamos los colores de fondo limpios según la variante usando la clase panelClass */
+.snackbar-success .mdc-snackbar__surface {
+  background-color: #2e7d32 !important;
+}
+
+.snackbar-error .mdc-snackbar__surface {
+  background-color: #c62828 !important;
+}
+
+.snackbar-warning .mdc-snackbar__surface {
+  background-color: #ed6c02 !important;
+}
+
+.snackbar-info .mdc-snackbar__surface {
+  background-color: #0288d1 !important;
+}

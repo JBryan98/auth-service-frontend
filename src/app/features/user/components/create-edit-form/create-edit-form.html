@@ -1,0 +1,37 @@
+<app-form-dialog
+  [title]="this.title"
+  (cancel)="onClose()"
+  (confirm)="onSubmit()"
+  [isSubmitting]="isSubmitting()"
+  [isLoading]="userResource.isLoading()"
+  loadingText="Cargando datos del usuario..."
+  [isError]="userResource.error() !== undefined"
+>
+  @if (userResource.error()) {
+    <app-alert
+      severity="error"
+      alertTitle="Error al cargar los usuarios"
+      (action)="userResource.reload()"
+      actionLabel="REINTENTAR"
+    >
+      {{ userResource.error()?.message }}
+    </app-alert>
+  } @else {
+    <form [formRoot]="form">
+      <app-form-input [formField]="form.firstName" label="Nombres" />
+      <app-form-input [formField]="form.lastName" label="Apellidos" />
+      <app-form-input [formField]="form.email" label="Correo electrónico" type="email" />
+      <app-form-select-multiple
+        [formField]="form.roleIds"
+        label="Roles"
+        [options]="this.dialogData.roles"
+        valueKey="id"
+        labelKey="name"
+      />
+      @if (!this.isEditForm) {
+        <app-form-input [formField]="form.username" label="Usuario" />
+        <app-form-input [formField]="form.password" label="Contraseña" type="password" />
+      }
+    </form>
+  }
+</app-form-dialog>

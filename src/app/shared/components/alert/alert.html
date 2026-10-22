@@ -1,0 +1,40 @@
+<div class="alert" role="alert" [class]="rootClass()">
+  <div
+    class="alert-icon"
+    [style]="{
+      display: alertTitle() ? 'block' : 'flex',
+      'align-items': alertTitle() ? undefined : 'center',
+    }"
+  >
+    <mat-icon fontSet="material-symbols-outlined" aria-hidden="true">{{ iconName() }}</mat-icon>
+  </div>
+
+  <div class="alert-message">
+    @if (alertTitle()) {
+      <div class="alert-title">{{ alertTitle() }}</div>
+    }
+    <ng-content />
+  </div>
+
+  @if (actionLabel() || closable()) {
+    <div class="alert-action">
+      @if (actionLabel()) {
+        <button type="button" matButton (click)="action.emit()">
+          {{ actionLabel() }}
+        </button>
+      }
+
+      @if (closable()) {
+        <button
+          type="button"
+          class="alert-close"
+          aria-label="Close"
+          title="Close"
+          (click)="closed.emit()"
+        >
+          <mat-icon fontSet="material-symbols-outlined" aria-hidden="true">close</mat-icon>
+        </button>
+      }
+    </div>
+  }
+</div>

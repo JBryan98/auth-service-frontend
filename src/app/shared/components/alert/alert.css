@@ -1,0 +1,148 @@
+:host {
+  display: block;
+}
+
+.alert {
+  --alert-main: var(--app-info);
+  --alert-light: var(--app-info-light);
+
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 6px 16px;
+  border-radius: 4px;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+}
+
+/* Severidades */
+.alert-success {
+  --alert-main: var(--app-success);
+  --alert-light: var(--app-success-light);
+}
+.alert-info {
+  --alert-main: var(--app-info);
+  --alert-light: var(--app-info-light);
+}
+.alert-warning {
+  --alert-main: var(--app-warning);
+  --alert-light: var(--app-warning-light);
+}
+.alert-error {
+  --alert-main: var(--app-error);
+  --alert-light: var(--app-error-light);
+}
+
+/* Standard: fondo lighten(light, .9), texto darken(light, .6) */
+.alert-standard {
+  color: color-mix(in srgb, var(--alert-light) 40%, black);
+  background-color: color-mix(in srgb, var(--alert-light) 10%, white);
+}
+
+/* Outlined: borde lighten(light, .6) */
+.alert-outlined {
+  color: color-mix(in srgb, var(--alert-light) 40%, black);
+  border: 1px solid color-mix(in srgb, var(--alert-light) 40%, white);
+  background-color: transparent;
+}
+
+.alert-standard .alert-icon,
+.alert-outlined .alert-icon {
+  color: var(--alert-main);
+}
+
+/* Filled */
+.alert-filled {
+  color: #fff;
+  background-color: var(--alert-main);
+  font-weight: 500;
+}
+.alert-filled .alert-icon {
+  color: inherit;
+}
+
+/* Partes */
+.alert-icon {
+  display: flex;
+  padding: 7px 0;
+  margin-right: 12px;
+  font-size: 22px;
+  opacity: 0.9;
+}
+
+.alert-icon mat-icon {
+  width: 22px;
+  height: 22px;
+  font-size: 22px;
+}
+
+.alert-message {
+  min-width: 0;
+  padding: 8px 0;
+  overflow: auto;
+}
+
+.alert-title {
+  margin: -2px 0 0.35em;
+  font-weight: 500;
+  line-height: 1.57;
+  letter-spacing: 0.00714em;
+}
+
+/* .alert-action {
+  display: flex;
+  align-items: flex-start;
+  margin-left: auto;
+  margin-right: -8px;
+  padding: 4px 0 0 16px;
+} */
+
+.alert-action {
+  display: flex;
+  align-items: center; /* Centrar verticalmente los elementos de la acción */
+  gap: 8px; /* Espacio entre el botón de acción y el botón de cerrar */
+  margin-left: auto;
+  margin-right: -8px;
+  padding: 4px 0 0 16px;
+}
+
+.alert-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 150ms;
+}
+.alert-close:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.alert-close mat-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+}
+
+/* El botón básico hereda automáticamente el color del alert (funciona para standard, outlined y filled) */
+.alert-action button[matButton] {
+  color: inherit;
+  --mat-button-text-ripple-color: color-mix(in srgb, var(--alert-main) 12%, transparent);
+  --mat-button-text-focus-state-layer-color: color-mix(in srgb, var(--alert-main) 12%, transparent);
+  --mat-button-text-hover-state-layer-color: color-mix(in srgb, var(--alert-main) 8%, transparent);
+}
+/* Efecto hover adaptado a la variante del alert */
+.alert-standard .alert-action button[matButton]:hover,
+.alert-outlined .alert-action button[matButton]:hover {
+  background-color: color-mix(in srgb, var(--alert-light) 15%, transparent);
+}
+
+.alert-filled .alert-action button[matButton]:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}

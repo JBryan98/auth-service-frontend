@@ -1,0 +1,13 @@
+<div class="paper">
+  @if (this.userResource?.isLoading()) {
+    <p>Loading...</p>
+  } @else if (this.userResource?.hasValue()) {
+    <pre>
+    {{ this.userResource?.value() | json }}
+  </pre>
+  } @else if (this.userResource?.error()) {
+    <app-alert severity="error">
+      <p>Error: {{ this.userResource?.error()?.message }}</p>
+    </app-alert>
+  }
+</div>

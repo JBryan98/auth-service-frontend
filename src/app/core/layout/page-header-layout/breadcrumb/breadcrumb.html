@@ -1,0 +1,27 @@
+<div class="breadcrumb">
+  @for (crumb of crumbs(); track crumb.url; let first = $first; let last = $last) {
+    @if (!first) {
+      <mat-icon>chevron_right</mat-icon>
+    }
+    @switch (crumb.status) {
+      @case ('loading') {
+        <span class="skeleton"></span>
+      }
+      @case ('error') {
+        <span class="crumb-error">
+          <mat-icon>error</mat-icon>
+          Error
+        </span>
+      }
+      @case ('ready') {
+        @if (last) {
+          <span class="current">
+            {{ crumb.label }}
+          </span>
+        } @else {
+          <a [routerLink]="crumb.url" class="crumb-link">{{ crumb.label }}</a>
+        }
+      }
+    }
+  }
+</div>

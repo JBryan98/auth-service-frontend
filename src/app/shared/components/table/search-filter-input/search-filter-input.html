@@ -1,0 +1,9 @@
+<mat-form-field appearance="outline" class="search-filter-input" subscriptSizing="dynamic">
+  <mat-icon matPrefix>search</mat-icon>
+  <input matInput (input)="onChange($event)" [value]="searchFilter()" placeholder="Buscar..."/>
+  @if (searchFilter().length > 0) {
+    <button mat-icon-button matSuffix (click)="cleanFilter()">
+      <mat-icon>close</mat-icon>
+    </button>
+  }
+</mat-form-field>

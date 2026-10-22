@@ -1,0 +1,26 @@
+.page-header {
+  min-height: 64px;
+  margin-bottom: 16px;
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .page-header {
+    min-height: 56px;
+    padding: 0 8px;
+    gap: 8px;
+  }
+
+  h2 {
+    font-size: 1rem;
+  }
+}

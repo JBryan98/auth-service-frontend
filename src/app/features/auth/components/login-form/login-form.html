@@ -1,0 +1,11 @@
+<form (submit)="onSubmit($event)" [formRoot]="loginForm" class="login-form" autocomplete="off">
+  <app-form-input [formField]="loginForm.username" label="Usuario" />
+  <app-form-input [formField]="loginForm.password" label="Contraseña" type="password" />
+  <button type="submit" matButton="filled" class="btn-submit" [disabled]="loginForm().submitting()">
+    @if (loginForm().submitting()) {
+      INICIANDO SESIÓN...
+    } @else {
+      INICIAR SESIÓN
+    }
+  </button>
+</form>

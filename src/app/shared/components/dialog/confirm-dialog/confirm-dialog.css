@@ -1,0 +1,10 @@
+mat-divider {
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+.close-button{
+    position: absolute;
+    right: 8px;
+    top: 8px;
+}

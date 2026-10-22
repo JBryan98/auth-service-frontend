@@ -1,0 +1,41 @@
+<!-- https://stackblitz.com/run?file=src%2Fexample%2Fsidenav-responsive-example.html&startScript=start-->
+<div class="container" [class.is-mobile]="isMobile()">
+  <mat-toolbar class="toolbar">
+    <button matIconButton (click)="snav.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h2 class="app-name mat-font-headline-md que">Sistema de Gestión</h2>
+    <span class="spacer"></span>
+    <app-user-menu />
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="isMobile() ? 56 : 0">
+    <mat-sidenav
+      #snav
+      [mode]="isMobile() ? 'over' : 'side'"
+      [fixedInViewport]="isMobile()"
+      fixedTopGap="56"
+    >
+      <mat-nav-list>
+        @for (item of sidebarItems(); track $index) {
+          <a
+            mat-list-item
+            [routerLink]="item.route"
+            routerLinkActive="active-link"
+            #rla="routerLinkActive"
+            class="mat-body-small"
+            [activated]="rla.isActive"
+          >
+            <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+            <span matListItemTitle>{{ item.label }}</span>
+          </a>
+        }
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <main class="main-content">
+        <router-outlet></router-outlet>
+      </main>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

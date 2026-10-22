@@ -1,0 +1,13 @@
+<button matIconButton color="secondary" [matMenuTriggerFor]="menu" class="avatar-button">
+    <span>{{ this.avatarTxt }}</span>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="changePassword()">
+    <mat-icon>key</mat-icon>
+    <span>Cambiar contraseña</span>
+  </button>
+  <button mat-menu-item (click)="logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Cerrar sesión</span>
+  </button>
+</mat-menu>
